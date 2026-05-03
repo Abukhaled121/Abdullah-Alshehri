@@ -1,0 +1,77 @@
+BEGIN
+
+DISPLAY "Welcome to Examination System"
+
+INPUT Name
+INPUT Email
+INPUT Phone
+INPUT Password
+
+CREATE Account
+
+INPUT Verification_Code
+
+IF Verification_Code is correct THEN
+    Activate Account
+ELSE
+    DISPLAY "Invalid Code"
+    STOP
+END IF
+
+INPUT Email
+INPUT Password
+
+IF Login is correct THEN
+    DISPLAY "Login Successful"
+ELSE
+    DISPLAY "Login Failed"
+    DISPLAY "Recover Password"
+    STOP
+END IF
+
+DISPLAY "Available Exams"
+
+INPUT Select_Exam
+
+DISPLAY Exam_Details
+DISPLAY Fees
+DISPLAY Dates
+DISPLAY Locations
+
+INPUT Payment_Info
+PAY Full_Fee
+
+INPUT Choose_Date
+INPUT Choose_Location
+
+CONFIRM Booking
+
+DISPLAY "Take Exam"
+
+INPUT Result
+
+IF Result = Pass THEN
+    DISPLAY "Certificate Issued"
+
+ELSE
+
+    INPUT Fail_Attempt
+
+    IF Fail_Attempt = 1 THEN
+        PAY 50%
+        REBOOK Exam
+
+    ELSE IF Fail_Attempt = 2 THEN
+        PAY 25%
+        REBOOK Exam
+
+    ELSE
+        WAIT 1 Month
+        PAY Full_Fee
+        REBOOK Exam
+
+    END IF
+
+END IF
+
+END
